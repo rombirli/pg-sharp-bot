@@ -21,8 +21,8 @@ def apply_filter(filtered, image):
 class Filters:
     @classmethod
     def pgsharp(cls, image: np.array):
-        return filter_color(image, (255, 170, 0)) | \
-               filter_color(image, (255, 208, 11))
+        return filter_color(image, (255, 170, 0), (1, 1, 1)) | \
+               filter_color(image, (255, 208, 11), (1, 1, 1))
 
 
     @classmethod
