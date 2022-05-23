@@ -37,7 +37,7 @@ for image_file in os.listdir('screenshots'):
         # All the 6 methods for comparison in a list
         (x, y), score = process(methods[1], image, template)
         if score < 0.90: continue
-        width, height = template.shape[:2]
+        height, width = template.shape[:2]
         bottomright = (x + width, y + height)
         rect = patches.Rectangle((x, y), width, height, linewidth=1, edgecolor='r', facecolor='none')
         plt.gca().add_patch(rect)
