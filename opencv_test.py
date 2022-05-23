@@ -31,7 +31,7 @@ for image in ['main.png']:
         x, y = process(methods[1], image, template)
         width, height = template.shape[:2]
         bottomright = (x + width, y + height)
-        rect = patches.Rectangle((x, y), width, height, linewidth=3, edgecolor='r', facecolor='none')
+        rect = patches.Rectangle((x, y), width, height, linewidth=1, edgecolor='r', facecolor='none')
         plt.gca().add_patch(rect)
         plt.text(x + width + 10, y + height, templatename.replace('.png', '').replace('_', ' '), color='red')
     plt.savefig('patterns.png', dpi=300)
