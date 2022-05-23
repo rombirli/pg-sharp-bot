@@ -8,20 +8,20 @@ from processing.helpers import load_picture
 
 def is_pgplus_enabled():
     img = load_picture('screen.png')
-    x, y, width, height = map(int, open('patterns/pgplus_enabled.txt'))
+    x, y, width, height = map(int, open('templates/pgplus_enabled.txt'))
     subim = img[y:y + height, x:x + width, :-1]
     plt.imshow(subim)
     plt.show()
-    return (subim == load_picture('patterns/pgplus_enabled.png')).all()
+    return (subim == load_picture('templates/pgplus_enabled.png')).all()
 
 
 def is_pgsharp_icon_here():
     img = load_picture('screen.png')
-    x, y, width, height = map(int, open('patterns/pgsharp.txt'))
+    x, y, width, height = map(int, open('templates/pgsharp.txt'))
     subim = img[y:y + height, x:x + width, :-1]
     plt.imshow(subim)
     plt.show()
-    return (subim == load_picture('patterns/pgsharp.png')).all()
+    return (subim == load_picture('templates/pgsharp.png')).all()
 
 
 saragosse_1, saragosse_2 = '41.660830,-0.892046', '41.662138,-0.894597'
