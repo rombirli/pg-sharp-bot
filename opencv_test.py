@@ -19,22 +19,20 @@ def process(meth, img, template):
         top_left = min_loc
     else:
         top_left = max_loc
-    bottom_right = (top_left[0] + w, top_left[1] + h)
-    return top_left, bottom_right
+    return top_left
 
 
 for image in ['main.png']:
-    image = cv.imread(f'screenshots/{image}', 0)
+    image = cv.imread(f'screenshots/{image}')
     plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     for templatename in os.listdir('templates_for_main'):
-        template = cv.imread(f'templates_for_main/{templatename}', 0)
-        w, h = template.shape[::-1]
+        template = cv.imread(f'templates_for_main/{templatename}')
         # All the 6 methods for comparison in a list
-        topleft, bottomright = process(methods[1], image, template)
-        (x0, y0), (x1, y1) = topleft, bottomright
-        center = (x0 + x1) / 2, (y0 + y1) / 2
-        rect = patches.Rectangle(bottomright, x0 - x1, y0 - y1, linewidth=3, edgecolor='r', facecolor='none')
+        x, y = process(methods[1], image, template)
+        width, height = template.shape[:2]
+        bottomright = (x + width, y + height)
+        rect = patches.Rectangle((x, y), width, height, linewidth=3, edgecolor='r', facecolor='none')
         plt.gca().add_patch(rect)
-        plt.text(x1 + 10, y1, templatename.replace('.png', '').replace('_', ' '), color='red')
+        plt.text(x + width + 10, y + height, templatename.replace('.png', '').replace('_', ' '), color='red')
     plt.savefig('patterns.png', dpi=300)
     plt.show()
